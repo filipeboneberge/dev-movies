@@ -1,19 +1,49 @@
+import { useEffect, useState } from "react";
 import api from "../../services/api";
 
+useState;
+
+import { Background, Container, Info, Poster } from "./styles";
+
 function Home() {
-  async function getMovies() {
-    const data = await api.get("/movie/popular");
+  const [movie, setMovie] = useState();
 
-    console.log(data);
-  }
+  useEffect(() => {
+    async function getMovies() {
+      const {
+        data: { results },
+      } = await api.get("/movie/popular");
 
-  getMovies();
+      setMovie(results[2]);
+    }
+    console.log(movie);
+
+    getMovies();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
-    <div>
-      <h1>Home</h1>
-      <p>Dev Movies</p>
-    </div>
+    <>
+      {movie && (
+        <Background
+          $img={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+        >
+          <Container>
+            <Info>
+              <h1>{movie.title}</h1>
+              <p>{movie.overview}</p>
+            </Info>
+
+            <Poster>
+              <img
+                alt="poster-movie"
+                src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+              />
+            </Poster>
+          </Container>
+        </Background>
+      )}
+    </>
   );
 }
 
