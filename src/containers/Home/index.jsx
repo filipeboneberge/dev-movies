@@ -3,7 +3,8 @@ import api from "../../services/api";
 
 useState;
 
-import { Background, Container, Info, Poster } from "./styles";
+import Button from "../../components/Button";
+import { Background, Container, ContainerButton, Info, Poster } from "./styles";
 
 function Home() {
   const [movie, setMovie] = useState();
@@ -32,6 +33,11 @@ function Home() {
             <Info>
               <h1>{movie.title}</h1>
               <p>{movie.overview}</p>
+
+              <ContainerButton>
+                <Button red>Assitir o filme</Button>
+                <Button>Assitir o trailer</Button>
+              </ContainerButton>
             </Info>
 
             <Poster>
