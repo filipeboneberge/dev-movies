@@ -8,6 +8,7 @@ import { Background, Container, ContainerButton, Info, Poster } from "./styles";
 
 function Home() {
   const [movie, setMovie] = useState();
+  const [topMovies, setTopMovies] = useState();
 
   useEffect(() => {
     async function getMovies() {
@@ -19,6 +20,16 @@ function Home() {
     }
     console.log(movie);
 
+    async function getTopMovies() {
+      const {
+        data: { results },
+      } = await api.get("/movie/top_rated");
+
+      console.log(results);
+      setTopMovies(results);
+    }
+
+    getTopMovies();
     getMovies();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
