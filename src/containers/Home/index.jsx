@@ -4,6 +4,7 @@ import api from "../../services/api";
 useState;
 
 import Button from "../../components/Button";
+import Slider from "../../components/Slider";
 import { Background, Container, ContainerButton, Info, Poster } from "./styles";
 
 function Home() {
@@ -60,6 +61,7 @@ function Home() {
           </Container>
         </Background>
       )}
+      {topMovies && <Slider info={topMovies} title={"Top Filmes"} />}
     </>
   );
 }
