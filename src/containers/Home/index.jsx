@@ -11,6 +11,7 @@ import { Background, Container, ContainerButton, Info, Poster } from "./styles";
 function Home() {
   const [movie, setMovie] = useState();
   const [topMovies, setTopMovies] = useState();
+  const [topSeries, setTopSeries] = useState();
 
   useEffect(() => {
     async function getMovies() {
@@ -31,8 +32,18 @@ function Home() {
       setTopMovies(results);
     }
 
-    getTopMovies();
+    async function getTopSeries() {
+      const {
+        data: { results },
+      } = await api.get("/tv/top_rated");
+
+      console.log(results);
+      setTopSeries(results);
+    }
+
     getMovies();
+    getTopMovies();
+    getTopSeries();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -58,6 +69,7 @@ function Home() {
         </Background>
       )}
       {topMovies && <Slider info={topMovies} title={"Top Filmes"} />}
+      {topSeries && <Slider info={topSeries} title={"Top Séries"} />}
     </>
   );
 }
