@@ -1,11 +1,23 @@
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Logo from "../../assets/logo.png";
 import { Container, Li, Menu } from "./styles";
 
 function Header() {
   const { pathname } = useLocation();
+  const [changeBackground, setChangeBackground] = useState(false);
+
+  window.onscroll = () => {
+    if (!changeBackground && window.pageYOffset > 150) {
+      setChangeBackground(true);
+    }
+    if (changeBackground && window.pageYOffset <= 150) {
+      setChangeBackground(false);
+    }
+  };
+
   return (
-    <Container>
+    <Container changeBackground={changeBackground}>
       <img src={Logo} alt="logo-dev-movies" />
 
       <Menu>
