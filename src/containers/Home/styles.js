@@ -55,7 +55,7 @@ export const ContainerButton = styled.div`
 `;
 
 export const Poster = styled.div`
-  z-index: 2;
+  z-index: 99;
 
   img {
     width: 400px;
