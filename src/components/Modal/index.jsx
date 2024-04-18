@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import api from "../../services/api";
+import { getMovieModal } from "../../services/getData";
 import { Background, Container } from "./styles";
 
 function Modal({ movieId, setShowModal }) {
@@ -9,12 +9,7 @@ function Modal({ movieId, setShowModal }) {
 
   useEffect(() => {
     async function getMovie() {
-      const {
-        data: { results },
-      } = await api.get(`/movie/${movieId}/videos`);
-
-      console.log(results[0]);
-      setMovie(results[0]);
+      setMovie(await getMovieModal(movieId));
     }
 
     getMovie();
