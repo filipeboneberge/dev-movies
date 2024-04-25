@@ -25,16 +25,38 @@ function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // async function getAllData() {
+    //   setMovie(await getMovies());
+    //   setTopMovies(await getTopMovies());
+    //   setTopSeries(await getTopSeries());
+    //   setPopularSeries(await getPopularSeries());
+    //   setPopularPeople(await getPopularPeople());
+    // }
+
+    // getAllData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+
     async function getAllData() {
-      setMovie(await getMovies());
-      setTopMovies(await getTopMovies());
-      setTopSeries(await getTopSeries());
-      setPopularSeries(await getPopularSeries());
-      setPopularPeople(await getPopularPeople());
+      console.time("time");
+      Promise.all([
+        getMovies(),
+        getTopMovies(),
+        getTopSeries(),
+        getPopularSeries(),
+        getPopularPeople(),
+      ])
+        .then(([movie, topMovies, topSeries, popularSeries, popularPeople]) => {
+          setMovie(movie);
+          setTopMovies(topMovies);
+          setTopSeries(topSeries);
+          setPopularSeries(popularSeries);
+          setPopularPeople(popularPeople);
+        })
+        .catch((error) => console.error(error));
+      console.timeEnd("time");
     }
 
     getAllData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
