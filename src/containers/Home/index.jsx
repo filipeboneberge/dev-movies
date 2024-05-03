@@ -37,7 +37,6 @@ function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
 
     async function getAllData() {
-      console.time("time");
       Promise.all([
         getMovies(),
         getTopMovies(),
@@ -53,7 +52,6 @@ function Home() {
           setPopularPeople(popularPeople);
         })
         .catch((error) => console.error(error));
-      console.timeEnd("time");
     }
 
     getAllData();
