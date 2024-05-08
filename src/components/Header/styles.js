@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   min-height: 100px;
-  z-index: 99;
+  z-index: 999;
   position: fixed;
   top: 0;
   display: flex;
@@ -44,7 +44,7 @@ export const Li = styled.li`
     left: 50%;
     transform: translateX(-50%);
     transition: width 0.5s ease-in-out;
-    bottom: -10px;
+    bottom: -5px;
   }
 
   &:hover::after {
