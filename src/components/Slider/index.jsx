@@ -6,7 +6,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 // eslint-disable-next-line react/prop-types
 function Slider({ info, title }) {
-  console.log(info, title);
   return (
     <Container>
       <h2>{title}</h2>
